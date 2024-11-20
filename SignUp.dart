@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+
 class SignupForm extends StatefulWidget {
   const SignupForm({Key? key}) : super(key: key);
 
@@ -63,6 +64,7 @@ class _SignupFormState extends State<SignupForm> {
                           _buildTextFormField(
                             controller: _firstNameController,
                             label: 'First Name',
+                            icon: Icons.person,
                             validator: (value) {
                               if (value == null || value.isEmpty) {
                                 return 'Please enter your first name';
@@ -73,6 +75,7 @@ class _SignupFormState extends State<SignupForm> {
                           _buildTextFormField(
                             controller: _lastNameController,
                             label: 'Last Name',
+                            icon: Icons.person_outline,
                             validator: (value) {
                               if (value == null || value.isEmpty) {
                                 return 'Please enter your last name';
@@ -83,6 +86,7 @@ class _SignupFormState extends State<SignupForm> {
                           _buildTextFormField(
                             controller: _emailController,
                             label: 'Email',
+                            icon: Icons.email,
                             keyboardType: TextInputType.emailAddress,
                             validator: (value) {
                               if (value == null || value.isEmpty) {
@@ -97,12 +101,13 @@ class _SignupFormState extends State<SignupForm> {
                           _buildTextFormField(
                             controller: _passwordController,
                             label: 'Password',
+                            icon: Icons.lock,
                             obscureText: true,
                             validator: (value) {
                               if (value == null || value.isEmpty) {
                                 return 'Please enter a password';
                               }
-                              if (value.length < 6) {
+                              if (value!.length < 6) {
                                 return 'Password must be at least 6 characters long';
                               }
                               return null;
@@ -111,6 +116,7 @@ class _SignupFormState extends State<SignupForm> {
                           _buildTextFormField(
                             controller: _confirmPasswordController,
                             label: 'Confirm Password',
+                            icon: Icons.lock_outline,
                             obscureText: true,
                             validator: (value) {
                               if (value == null || value.isEmpty) {
@@ -125,6 +131,7 @@ class _SignupFormState extends State<SignupForm> {
                           _buildTextFormField(
                             controller: _phoneNumberController,
                             label: 'Phone Number',
+                            icon: Icons.phone,
                             keyboardType: TextInputType.phone,
                             validator: (value) {
                               if (value == null || value.isEmpty) {
@@ -139,6 +146,7 @@ class _SignupFormState extends State<SignupForm> {
                           _buildTextFormField(
                             controller: _panCardNumberController,
                             label: 'PAN Card Number',
+                            icon: Icons.credit_card,
                             validator: (value) {
                               if (value == null || value.isEmpty) {
                                 return 'Please enter your PAN card number';
@@ -153,6 +161,7 @@ class _SignupFormState extends State<SignupForm> {
                             value: _selectedBank,
                             items: _banks,
                             label: 'Bank Name',
+                            icon: Icons.account_balance,
                             onChanged: (String? newValue) {
                               setState(() {
                                 _selectedBank = newValue;
@@ -169,6 +178,7 @@ class _SignupFormState extends State<SignupForm> {
                             value: _selectedBranch,
                             items: _branches,
                             label: 'Branch Name',
+                            icon: Icons.business,
                             onChanged: (String? newValue) {
                               setState(() {
                                 _selectedBranch = newValue;
@@ -184,6 +194,7 @@ class _SignupFormState extends State<SignupForm> {
                           _buildTextFormField(
                             controller: _ifscCodeController,
                             label: 'IFSC Code',
+                            icon: Icons.confirmation_number,
                             validator: (value) {
                               if (value == null || value.isEmpty) {
                                 return 'Please enter the IFSC code';
@@ -197,6 +208,7 @@ class _SignupFormState extends State<SignupForm> {
                           _buildTextFormField(
                             controller: _accountNumberController,
                             label: 'Account Number',
+                            icon: Icons.account_box,
                             keyboardType: TextInputType.number,
                             validator: (value) {
                               if (value == null || value.isEmpty) {
@@ -211,6 +223,7 @@ class _SignupFormState extends State<SignupForm> {
                           _buildTextFormField(
                             controller: _addressController,
                             label: 'Address',
+                            icon: Icons.home,
                             maxLines: 3,
                             validator: (value) {
                               if (value == null || value.isEmpty) {
@@ -256,6 +269,7 @@ class _SignupFormState extends State<SignupForm> {
     TextInputType? keyboardType,
     int? maxLines,
     required String? Function(String?) validator,
+    IconData? icon,
   }) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 16.0),
@@ -263,6 +277,7 @@ class _SignupFormState extends State<SignupForm> {
         controller: controller,
         decoration: InputDecoration(
           labelText: label,
+          prefixIcon: icon != null ? Icon(icon) : null,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10.0),
           ),
@@ -293,6 +308,7 @@ class _SignupFormState extends State<SignupForm> {
     required String label,
     required void Function(String?) onChanged,
     required String? Function(String?) validator,
+    IconData? icon,
   }) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 16.0),
@@ -300,6 +316,7 @@ class _SignupFormState extends State<SignupForm> {
         value: value,
         decoration: InputDecoration(
           labelText: label,
+          prefixIcon: icon != null ? Icon(icon) : null,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10.0),
           ),
